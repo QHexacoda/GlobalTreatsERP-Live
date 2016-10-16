@@ -13,6 +13,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/datepicker.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
@@ -144,7 +145,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">ฟอร์มสัญญาบริการ</h4>
+                                <h4 class="title">แบบฟอร์มสัญญาบริการใหม่</h4>
                             </div>
                             <div class="content">
                                 <div id="results_wrapper">
@@ -153,35 +154,101 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>ชื่อลูกค้า</label>
-                                                <select id="customertype" class="form-control" name="customer_id">
-                                                    <option value="1">ลูกค้า1</option>
-                                                    <option value="2">ลูกค้า1</option>
-                                                    <option value="3">ลูกค้า1</option>
-                                                    <option value="4">ลูกค้า1</option>
-                                                    <option value="5">ลูกค้า1</option>
+                                                <select id="customer_id" class="form-control" name="customer_id">
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row">
+                                        <div class="col-md-3"> 
+                                            <div class="form-group">
+                                                <label>ประเภทบริการ</label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>ปลวก</label>
+                                                    <input id="check1" type="checkbox" value="ปลวก" data-toggle="checkbox" checked="">
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>หนู</label>
+                                                    <input id="check2" type="checkbox" value="หนู" data-toggle="checkbox" checked="">
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>มด</label>
+                                                    <input id="check3" type="checkbox" value="มด" data-toggle="checkbox" checked="">
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>แมลงสาบ</label>
+                                                    <input id="check4" type="checkbox" value="แมลงสาบ" data-toggle="checkbox" checked="">
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>ยุง</label>
+                                                    <input id="check5" type="checkbox" value="ยุง" data-toggle="checkbox" checked="">
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="icons">
+                                                        <span class="first-icon fa fa-square-o"></span>
+                                                        <span class="second-icon fa fa-check-square-o"></span>
+                                                    </span>
+                                                    <label>อื่นๆ</label>
+                                                    <input id="check6" type="checkbox" value="" data-toggle="checkbox" checked="">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>ระยะสัญญา</label>
+                                                        <select id="contact_time" class="form-control" name="contact_time">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>ประเภทสัญญา</label>
+                                                        <select id="contact_time_type" class="form-control" name="contact_time_type">
+                                                            <option value="เดือน">เดือน</option>
+                                                            <option value="ปี">ปี</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>ระยะสัญญา</label>
-                                                <select id="customertype" class="form-control" name="contact_time">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                </select>
+                                                <label>วันที่เริ่มสัญญา</label>
+                                                <div id="dp1" data-date="12-02-2012" data-date-format="dd-mm-yyyy"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>ประเภทสัญญา</label>
-                                                <select id="customertype" class="form-control" name="contact_time_type">
-                                                    <option value="1">เดือน</option>
-                                                    <option value="2">ปี</option>
-                                                </select>
+                                                <label>วันที่สิ้นสุดสัญญา</label>
+                                                <div id="dp2" data-date="12-02-2012" data-date-format="dd-mm-yyyy"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -189,28 +256,45 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>ราคา</label>
-                                                <input type="text" class="form-control" placeholder="ราคา" name="price">
+                                                <input id="price" type="text" class="form-control" placeholder="ราคา" name="price" value="0">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>ส่วนลด</label>
-                                                <input type="text" class="form-control" placeholder="ส่วนลด" name="discount">
+                                                <input id="discount" type="text" class="form-control" placeholder="ส่วนลด" name="discount" value="0">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>ภาษีมูลค่าเพิ่ม</label>
-                                                <input type="text" class="form-control" placeholder="vat" name="vat">
+                                                <input id="vat" type="text" class="form-control" placeholder="vat" name="vat" value="0" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>รวม</label>
-                                                <input type="text" class="form-control" placeholder="" name="total">
+                                                <input id="total" type="text" class="form-control" placeholder="" name="total" value="0" readonly="readonly">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>เงื่อนไขการชำระเงิน</label>
+                                                <input type="text" class="form-control" placeholder="" name="contact_payment_term">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>หมายเหตุ</label>
+                                                <textarea rows="5" class="form-control" placeholder="ระบุหมายเหตุ" name="contact_note"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <button type="submit" class="btn btn-info btn-fill pull-right" value="Submit" onclick="return createContactData();">บันทึกสัญญา</button>
                                     <div class="clearfix"></div>
                                 </form>
@@ -273,6 +357,7 @@
 
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -325,6 +410,15 @@
             return formParams;
         }
 
+        function setSelectedValue(selectObj, valueToSet) {
+            for (var i = 0; i < selectObj.options.length; i++) {
+                if (selectObj.options[i].text== valueToSet) {
+                    selectObj.options[i].selected = true;
+                    return;
+                }
+            }
+        }           
+
         function createContactData()
         {
             var customer_id = document.forms["contact_create_form"]["customer_id"].value;
@@ -358,78 +452,221 @@
         $(document).ready(function(){
 
             // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
-            authDomain: "globaltreatserp.firebaseapp.com",
-            databaseURL: "https://globaltreatserp.firebaseio.com",
-            storageBucket: "globaltreatserp.appspot.com",
-            messagingSenderId: "30498682760"
-        };
-        firebase.initializeApp(config);
-        var database = firebase.database();
-        var dbRefObject = database.ref('customers');
-        var dataSet = [];
-        var table;
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var dbRefObject = database.ref('customers');
+            var dataSet = [];
+            var table;
 
-        /* Customer List */
-        dbRefObject.on('child_added', function(snapshot) {
-            var key = snapshot.key;
-            console.log("key", key)
-            var customreRef = firebase.database().ref('customers/' + key);
-            customreRef.on('value', function(snapshot) {
-                dataSet.push([
-                    snapshot.val().customerid,
-                    snapshot.val().firstname + " " + snapshot.val().lastname,
-                    snapshot.val().address1 + " ," + 
-                    snapshot.val().address2 + " ," + 
-                    snapshot.val().street + " ," + 
-                    snapshot.val().soi + " ," + 
-                    snapshot.val().tumbon + " ," + 
-                    snapshot.val().aumphor + " ," + 
-                    snapshot.val().province,
-                    snapshot.val().aumphor,
-                    snapshot.val().phone
-                ]);
-                console.log("dataSet", dataSet);
-            }); 
-        });
+            /* Customer List */
+            dbRefObject.on('child_added', function(snapshot) {
+                var key = snapshot.key;
+                console.log("key", key)
+                var customreRef = firebase.database().ref('customers/' + key);
+                customreRef.on('value', function(snapshot) {
+                    dataSet.push([
+                        snapshot.val().customerid,
+                        snapshot.val().firstname + " " + snapshot.val().lastname,
+                        snapshot.val().address1 + " ," + 
+                        snapshot.val().address2 + " ," + 
+                        snapshot.val().street + " ," + 
+                        snapshot.val().soi + " ," + 
+                        snapshot.val().tumbon + " ," + 
+                        snapshot.val().aumphor + " ," + 
+                        snapshot.val().province,
+                        snapshot.val().aumphor,
+                        snapshot.val().phone
+                    ]);
+                    console.log("dataSet", dataSet);
 
-        /* Create Contact */
-        var contactCount;
-        firebase.database().ref('contacts/').once('value').then(function(snapshot) {
-            // var username = snapshot.val();
-            var counter = snapshot.numChildren() + 1;
-            contactCount = counter.toString();
-            console.log("count current data : " + contactCount);
-        });
-
-        function ok() {
-            var params = getFormResults(document.getElementById('contact_create_form'));
-            var length = contactCount.length;
-            var contactId = "CON"
-            for (i = 0; i < 4 - length; i++) { 
-                contactId = contactId.concat("0");
-            }
-            console.log('query count ' + contactCount);
-            var contactID = contactId + contactCount;
-            // Write data to firebase
-            firebase.database().ref('contacts/' + contactID).set({
-                contact_id: contactID,
-                customer_id: contactID,
-                customer_firstname: contactID,
-                customer_lastname: contactID,
-                customer_address: contactID
+                    //Get select object
+                    var cutomerDropdown = document.getElementById("customer_id");
+                    //Set selected
+                    for (var i = 0; i < dataSet.length; i++) {
+                        console.log("customer", dataSet[i][1]);
+                        var opt = document.createElement("option");
+                        opt.value = dataSet[i][0];
+                        opt.textContent = dataSet[i][1];
+                        cutomerDropdown.appendChild(opt);
+                    }
+                }); 
             });
 
-            window.location.href = "contactlist.html";
-        }   
+            /* Create Contact */
+            var contactCount;
+            firebase.database().ref('contacts/').once('value').then(function(snapshot) {
+                // var username = snapshot.val();
+                var counter = snapshot.numChildren() + 1;
+                contactCount = counter.toString();
+                console.log("count current data : " + contactCount);
+            });
 
-        (function() {
-            var main_form = document.getElementById('contact_create_form');
-                main_form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    ok();
-                }, false);
+            // Prepare Contact Date
+            var contact_start_date, contact_end_date;
+            $('#dp1').datepicker({
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked'
+            });
+            $('#dp2').datepicker({
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked'
+            });
+
+            $('#dp1').datepicker().on('changeDate', function(ev){
+                var date = new Date(ev.date.valueOf());
+                var dd = date.getDate();
+                var mm = date.getMonth()+1; //January is 0!
+
+                var yyyy = date.getFullYear();
+                if(dd<10){
+                    dd='0'+dd
+                } 
+                if(mm<10){
+                    mm='0'+mm
+                } 
+                var today = dd+'/'+mm+'/'+yyyy;
+                contact_start_date = today;
+            });
+
+            $('#dp2').datepicker().on('changeDate', function(ev){
+                var date = new Date(ev.date.valueOf());
+                var dd = date.getDate();
+                var mm = date.getMonth()+1; //January is 0!
+
+                var yyyy = date.getFullYear();
+                if(dd<10){
+                    dd='0'+dd
+                } 
+                if(mm<10){
+                    mm='0'+mm
+                } 
+                var today = dd+'/'+mm+'/'+yyyy;
+                contact_end_date = today;
+            });
+
+            // Prepare for Price Calculator
+            $("#price").on("change keyup paste", function(){
+                var price = document.forms["contact_create_form"]["price"].value;
+                var discount = document.forms["contact_create_form"]["discount"].value;
+                var vat = (price - discount) * 0.07;
+                document.forms["contact_create_form"]["total"].value = Math.round((price - discount) + vat);
+                document.forms["contact_create_form"]["vat"].value = Math.round(vat);
+            })
+
+            $("#discount").on("change keyup paste", function(){
+                var price = document.forms["contact_create_form"]["price"].value;
+                var discount = document.forms["contact_create_form"]["discount"].value;
+                var vat = (price - discount) * 0.07;
+                document.forms["contact_create_form"]["total"].value = Math.round((price - discount) + vat);
+                document.forms["contact_create_form"]["vat"].value = Math.round(vat);
+            })
+
+            function ok() {
+                var params = getFormResults(document.getElementById('contact_create_form'));
+                var length = contactCount.length;
+                var contactId = "CON"
+                for (i = 0; i < 4 - length; i++) { 
+                    contactId = contactId.concat("0");
+                }
+                console.log('query count ' + contactCount);
+                var contactID = contactId + contactCount;
+
+                // Prepare type of service
+                var check1 = document.getElementById('check1').checked;
+                var check2 = document.getElementById('check2').checked;
+                var check3 = document.getElementById('check3').checked;
+                var check4 = document.getElementById('check4').checked;
+                var check5 = document.getElementById('check5').checked;
+                var check6 = document.getElementById('check6').checked;
+                var check1Val, check2Val, check3Val, check4Val, check5Val, check6Val;
+
+                if (check1) {
+                    check1Val = "ปลวก";
+                } else {
+                    check1Val = "";
+                }
+
+                if (check2) {
+                    check2Val = "หนู";
+                } else {
+                    check2Val = "";
+                }
+
+                if (check3) {
+                    check3Val = "มด";
+                } else {
+                    check3Val = "";
+                }
+
+                if (check4) {
+                    check4Val = "แมลงสาบ";
+                } else {
+                    check4Val = "";
+                }
+
+                if (check5) {
+                    check5Val = "ยุง";
+                } else {
+                    check5Val = "";
+                }
+
+                if (check6) {
+                    check6Val = "อื่นๆ";
+                } else {
+                    check6Val = "";
+                }
+
+                // Prepare Customer Data
+                var customer_id = document.getElementById("customer_id").value;
+                var customer_name;
+                var customer_address;
+                var customer_phone;
+                for (var i = 0; i < dataSet.length; i++) {
+                    console.log("customer", dataSet[i][1]);
+                    var cID = dataSet[i][0];
+                    if (cID.localeCompare(customer_id) == 0) {
+                        customer_name = dataSet[i][1];
+                        customer_address = dataSet[i][2];
+                        customer_phone = dataSet[i][4];
+                    }
+                }
+
+                // Write data to firebase
+                firebase.database().ref('contacts/' + contactID).set({
+                    contact_id: contactID,
+                    customer_id: customer_id,
+                    customer_name: customer_name,
+                    customer_address: customer_address,
+                    customer_phone: customer_phone,
+                    contact_services: check1Val + " " + check2Val + " " + check3Val + " " + check4Val + " " + check5Val  + " " + check6Val,
+                    contact_time: params.contact_time,
+                    contact_time_type: params.contact_time_type,
+                    contact_start_date: contact_start_date,
+                    contact_end_date: contact_end_date,
+                    contact_price: params.price,
+                    contact_discount: params.discount,
+                    contact_vat: params.vat,
+                    contact_total: params.total,
+                    contact_payment_term: params.contact_payment_term,
+                    contact_note: params.contact_note
+                });
+
+                window.location.href = "contactlist.html";
+            }   
+
+            (function() {
+                var main_form = document.getElementById('contact_create_form');
+                    main_form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        ok();
+                    }, false);
             })();
         });
     </script>
