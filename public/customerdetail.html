@@ -151,19 +151,62 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">ข้อมูลลูกค้า</h4>
-                                <p class="category">รายการข้อมูลลูกค้า</p>
+                                <p class="category">รายละเอียด</p>
+                            </div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="typo-line">
+                                            <h5><p class="category">รหัสลูกค้า : </p>CT1111002</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">ชื่อ-นามสกุล : </p>วีรยุทธ งานดี</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">ที่อยู่ : </p>179/50 Thawangtan,กาญจน์กนกวิลล์,วงแหวนรอบกลาง,2/5,ท่าวังตาล,สารภี,เชียงใหม่</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">เบอร์โทรติดต่อ : </p>097-2183972</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">โซนให้บริการ : </p>สารภี</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">สัญญาเลขที่ : </p>CT1111002</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">ระยะสัญญา : </p>1 ปี</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">ประเภทงานบริการ : </p>ปลวก</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">วันที่ทำสัญญา : </p>10 ตุลาคม 2559</h5>
+                                        </div>
+                                        <div class="typo-line">
+                                            <h5><p class="category">วันที่หมดสัญญา : </p>10 ตุลาคม 2560</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="header">
+                                    <h4 class="title">ข้อมูลเข้าบริการ</h4>
+                                    <p class="category">รายละเอียด</p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped display" id="customer_table">
+                                <table class="table table-hover table-striped display" id="service_table">
                                 </table>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -257,43 +300,31 @@
                 customreRef.on('value', function(snapshot) {
                     dataSet.push([
                         snapshot.val().customerid,
-                        snapshot.val().firstname + " " + snapshot.val().lastname,
-                        snapshot.val().address1 + " ," + 
-                        snapshot.val().address2 + " ," + 
-                        snapshot.val().street + " ," + 
-                        snapshot.val().soi + " ," + 
-                        snapshot.val().tumbon + " ," + 
-                        snapshot.val().aumphor + " ," + 
-                        snapshot.val().province,
-                        snapshot.val().aumphor,
-                        snapshot.val().phone
+                        snapshot.val().firstname + " " + snapshot.val().lastname
                     ]);
                     console.log("dataSet", dataSet);
+
+                    var tempTable = $('#service_table').DataTable( {
+                        data: dataSet,
+                        processing: true,
+                        destroy: true,
+                        columns: [
+                            { title: "ว/ด/ป" },
+                            { title: "รถหมายเลข" },
+                            { defaultContent: "<button>รายละเอียด</button>" }
+                        ]
+                    });
+
+                    table = tempTable;
                 }); 
 
-                var tempTable = $('#customer_table').DataTable( {
-                    data: dataSet,
-                    processing: true,
-                    destroy: true,
-                    columns: [
-                        { title: "รหัสลูกค้า" },
-                        { title: "ชื่อ-นามสกุล" },
-                        { title: "ที่อยู่" },
-                        { title: "โซน" },
-                        { title: "เบอร์โทรติดต่อ" },
-                        { defaultContent: "<button>รายละเอียด</button>" }
-                    ]
-                });
-
-                table = tempTable;
+                $('#service_table').on( 'click', 'button', function () {
+                    // alert("test test");
+                    var data = table.row( $(this).parents('tr') ).data();
+                    console.log("button click", data);
+                    window.location.href = "customerdetail.html";
+                } );
             });
-
-            $('#customer_table').on( 'click', 'button', function () {
-                // alert("test test");
-                var data = table.row( $(this).parents('tr') ).data();
-                console.log("button click", data);
-                window.location.href = "customerdetail.html";
-            } );
         });
     </script>
 
