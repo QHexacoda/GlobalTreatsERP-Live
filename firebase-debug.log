@@ -3,12 +3,13 @@
 [debug] CLI Version:  3.0.3
 [debug] Platform:     darwin
 [debug] Node Version: v5.1.0
-[debug] Time:         Sun Oct 16 2016 12:20:24 GMT+0700 (ICT)
+[debug] Time:         Tue Oct 18 2016 09:28:20 GMT+0700 (ICT)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [info] Starting Firebase development server...
 [info] 
 [info] Project Directory: /Users/weerayoot/Documents/Personal/GlobalTreatsERP-Live
+[warn] ⚠  Port 5000 is not available. Trying another port...
 [info] Public Directory: public
 [info] 
-[info] Server listening at: http://localhost:5000
+[info] Server listening at: http://localhost:5001

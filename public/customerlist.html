@@ -275,6 +275,8 @@
                     data: dataSet,
                     processing: true,
                     destroy: true,
+                    bInfo: false,
+                    bPaginate: false,
                     columns: [
                         { title: "รหัสลูกค้า" },
                         { title: "ชื่อ-นามสกุล" },
@@ -292,7 +294,7 @@
                 // alert("test test");
                 var data = table.row( $(this).parents('tr') ).data();
                 console.log("button click", data);
-                window.location.href = "customerdetail.html";
+                window.location.href = "customerdetail.html?data=" + data[0];
             } );
         });
     </script>

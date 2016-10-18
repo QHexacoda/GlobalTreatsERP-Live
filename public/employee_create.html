@@ -144,45 +144,83 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">ข้อมูลพนักงาน</h4>
+                                <h4 class="title">แบบฟอร์มข้อมูลพนักงาน</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form id="employee-form">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>คำนำหน้าชื่อ</label>
-                                                <input type="text" class="form-control" placeholder="คำนำหน้า" value="นาย">
+                                                <select id="customertype" class="form-control" name="sex">
+                                                    <option value="" selected>--------- คำนำหน้าชื่อ ---------</option> 
+                                                    <option value="นาย">นาย</option>
+                                                    <option value="นาง">นาง</option>
+                                                    <option value="นางสาว">นางสาว</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>ชื่อ</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="วีรยุทธ">
+                                                <input type="text" class="form-control" placeholder="ชื่อ" name="firstname">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>นามสกุล</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="งานดี">
+                                                <input type="text" class="form-control" placeholder="นามสกุล"  name="lastname">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group"> 
+                                                <label>ตำแหน่ง</label>
+                                                <select id="position" class="form-control" name="position">
+                                                    <option value="" selected>--------- ตำแหน่ง ---------</option> 
+                                                    <option value="กรรมการผู้จัดการ">กรรมการผู้จัดการ</option>
+                                                    <option value="ผู้จัดการ">ผู้จัดการ</option>
+                                                    <option value="หัวหน้าแผนก">หัวหน้าแผนก</option>
+                                                    <option value="หัวหน้าช่าง">หัวหน้าช่าง</option>
+                                                    <option value="แอดมิน">หัวธุรการ</option>
+                                                    <option value="แอดมิน">ธุรการ</option>
+                                                    <option value="แอดมิน">ผู้คุมสินค้าคงคลัง</option>
+                                                    <option value="เซลล์">เซลล์</option>
+                                                    <option value="บัญชี">บัญชี</option>
+                                                    <option value="ช่าง">ช่าง</option>
+                                                    <option value="แม่บ้าน">แม่บ้าน</option>
+                                                    <option value="รักษาความปลอดภัย">รักษาความปลอดภัย</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>แผนก</label>
+                                                <select id="department" class="form-control" name="department">
+                                                    <option value="" selected>--------- แผนก ---------</option> 
+                                                    <option value="แอดมิน">ธุรการ</option>
+                                                    <option value="สต๊อค">สต๊อค</option>
+                                                    <option value="ช่าง">ช่าง</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label>ที่อยู่</label>
+                                                <textarea rows="2" class="form-control" placeholder="ที่อยู่" name="address"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>ตำแหน่ง</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="โปรแกรมเมอร์">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
                                                 <label>เบอร์โทรติดต่อ</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="0839435554">
+                                                <input type="text" class="form-control" placeholder="เบอร์โทรติดต่อ" name="phone">
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">บันทึกข้อมูลพนักงาน</button>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right" value="Submit" onclick="return createEmployeeData();">บันทึกข้อมูลพนักงาน</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -231,7 +269,7 @@
 
 </body>
 
-    <!--   Core JS Files   -->
+    <!--   Core JS Files   -->c
     <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -252,5 +290,132 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script type="text/javascript">
+
+        function setOrPush(target, val) {
+            var result = val;
+            if (target) {
+                result = [target];
+                result.push(val);
+            }
+            return result;
+        }
+
+        function getFormResults(formElement) {
+            var formElements = formElement.elements;
+            var formParams = {};
+            var i = 0;
+            var elem = null;
+            for (i = 0; i < formElements.length; i += 1) {
+                elem = formElements[i];
+                switch (elem.type) {
+                    case 'submit':
+                        break;
+                    case 'radio':
+                        if (elem.checked) {
+                            formParams[elem.name] = elem.value;
+                        }
+                        break;
+                    case 'checkbox':
+                        if (elem.checked) {
+                            formParams[elem.name] = setOrPush(formParams[elem.name], elem.value);
+                        }
+                        break;
+                    default:
+                        formParams[elem.name] = setOrPush(formParams[elem.name], elem.value);
+                }
+            }
+            return formParams;
+        }
+
+        function createEmployeeData()
+        {
+            var sexfield = document.forms["employee-form"]["sex"].value;
+            var fnamefield = document.forms["employee-form"]["firstname"].value;
+            var lnamefield = document.forms["employee-form"]["lastname"].value;
+            var positionfield = document.forms["employee-form"]["position"].value;
+            var departmentfield = document.forms["employee-form"]["department"].value;
+            var addressfield = document.forms["employee-form"]["address"].value;
+            var phonefield = document.forms["employee-form"]["phone"].value;
+
+            if (sexfield == null || sexfield == "" ||
+                fnamefield == null || fnamefield == "" ||
+                lnamefield == null || lnamefield == "" ||
+                positionfield == null || positionfield == "" ||
+                departmentfield == null || departmentfield == "" || 
+                addressfield == null || addressfield == "" ||
+                phonefield == null || phonefield == "")
+            {
+                alert("กรอกข้อมูลพนักงานไม่ครบ");
+                return false;
+            }
+            else
+            {
+                alert("บันทึกข้อมูลพนักงาน");
+                var params = getFormResults(document.getElementById('employee-form'));
+                console.log(params)
+                return true;
+            }
+        }
+
+        $(document).ready(function(){
+
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var customerCount;
+            var employeeCount;
+
+            firebase.database().ref('employees/').once('value').then(function(snapshot) {
+                // var username = snapshot.val();
+                var counter = snapshot.numChildren() + 1;
+                employeeCount = counter.toString();
+                console.log("count current data : " + employeeCount);
+            });
+
+            function ok() {
+                var params = getFormResults(document.getElementById('employee-form'));
+                var length = employeeCount.length;
+                var employeeId = "EMP"
+                for (i = 0; i < 4 - length; i++) { 
+                    employeeId = employeeId.concat("0");
+                }
+                console.log('query count ' + employeeCount);
+                var ID = employeeId + employeeCount;
+                // Write data to firebase
+                firebase.database().ref('employees/' + ID).set({
+                    employee_id: ID,
+                    employee_sex: params.sex,
+                    employee_firstname: params.firstname,
+                    employee_lastname: params.lastname,
+                    employee_position: params.position,
+                    employee_department: params.department,
+                    employee_address: params.address,
+                    employee_phone: params.phone,
+                    employee_score: ""          
+                });
+
+                window.location.href = "employee.html";
+            }   
+
+            (function() {
+                var main_form = document.getElementById('employee-form');
+                main_form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    ok();
+                }, false);
+            })();
+        });
+    </script>
 
 </html>

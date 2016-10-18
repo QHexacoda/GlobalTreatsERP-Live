@@ -23,14 +23,87 @@
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="assets/css/demo.css" rel="stylesheet" />
-
+    <link href="assets/css/modal-form.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 </head>
 <body>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <div class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h4 class="title">ข้อมูลพนักงาน</h4>
+                                            <p class="category">รายละเอียด</p>
+                                        </div>
+                                        <div class="content">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="typo-line">
+                                                                <p class="category">รหัสพนักงาน : </p>
+                                                                <h5 id="lb1">ไม่มีข้อมูล</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="typo-line">
+                                                                <p class="category">ชื่อ - สกุล : </p>
+                                                                <h5 id="lb2">ไม่มีข้อมูล</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="typo-line">
+                                                                <p class="category">เบอร์โทรศัพท์ : </p>
+                                                                <h5 id="lb3">ไม่มีข้อมูล</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="typo-line">
+                                                                <p class="category">ตำแหน่ง : </p>
+                                                                <h5 id="lb5">ไม่มีข้อมูล</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="typo-line">
+                                                                <p class="category">แผนก : </p>
+                                                                <h5 id="lb6">ไม่มีข้อมูล</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button  name="data" class="login loginmodal-submit" value="" id="dismiss">ปิด</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
 
 <div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
@@ -157,35 +230,8 @@
                                 <p class="category">รายการข้อมูลพนักงาน</p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>รหัสพนักงาน</th>
-                                    	<th>ชื่อ-นามสกุล</th>
-                                    	<th>ตำแหน่ง</th>
-                                        <th>เบอร์โทรติดต่อ</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>EOOO1</td>
-                                        	<td>นายสมพงษ์ ไสวดี</td>
-                                        	<td>กรรมการผู้จัดการ</td>
-                                        	<td>0858656444</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>EOO22</td>
-                                            <td>นายอำนาจ นัดไธสง</td>
-                                            <td>หัวหน้าฝ่ายขาย</td>
-                                            <td>0864297780</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>EOO25</td>
-                                            <td>คุณมะลิวัลย์ ไสวดี</td>
-                                            <td>ผู้จัดการ</td>
-                                            <td>0865081318</td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover table-striped display" id="employee_table">
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -254,6 +300,80 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var dbRefObject = database.ref('employees');
+            var dataSet = [];
+            var table;
+            dbRefObject.on('child_added', function(snapshot) {
+                var key = snapshot.key;
+                console.log("key", key)
+                var customreRef = firebase.database().ref('employees/' + key);
+                customreRef.on('value', function(snapshot) {
+                    dataSet.push([
+                        snapshot.val().employee_id,
+                        snapshot.val().employee_firstname + "  " + snapshot.val().employee_lastname,
+                        snapshot.val().employee_position,
+                        snapshot.val().employee_department,
+                        snapshot.val().employee_phone
+                    ]);
+                    console.log("dataSet", dataSet);
+                }); 
+
+                var tempTable = $('#employee_table').DataTable( {
+                    data: dataSet,
+                    processing: true,
+                    destroy: true,
+                    bInfo: false,
+                    bPaginate: false,
+                    columns: [
+                        { title: "รหัสพนักงาน" },
+                        { title: "ชื่อ - นามสกุล" },
+                        { title: "ตำแหน่ง" },
+                        { title: "แผนก" },
+                        { title: "เบอร์โทรติดต่อ" },
+                        { defaultContent: "<button>รายละเอียด</button>" }
+                    ]
+                });
+
+                table = tempTable;
+            });
+
+            $('#employee_table').on( 'click', 'button', function () {
+                // alert("test test");
+                var data = table.row( $(this).parents('tr') ).data();
+                console.log("button click", data);
+                document.getElementById("lb1").innerHTML = data[0];
+                document.getElementById("lb2").innerHTML = data[1];
+                document.getElementById("lb3").innerHTML = data[4];
+                document.getElementById("lb5").innerHTML = data[2];
+                document.getElementById("lb6").innerHTML = data[3];
+                $('#login-modal').modal('show');
+                // window.location.href = "customerdetail.html?data=" + data[0];
+            });
+
+            $('#dismiss').click(function () {
+                $('#login-modal').modal('hide');
+            });
+        });
+    </script>
 
 
 </html>

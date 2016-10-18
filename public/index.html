@@ -155,9 +155,7 @@
                               </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                Log out
-                            </a>
+                            <a href="#" id="form-signout">Log out</a>
                         </li>
                     </ul>
                 </div>
@@ -425,29 +423,9 @@
     <script src="assets/js/demo.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-<!--     <script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
-        authDomain: "GlobalTreaterp.firebaseapp.com",
-        databaseURL: "https://GlobalTreaterp.firebaseio.com",
-        storageBucket: "GlobalTreaterp.appspot.com",
-        messagingSenderId: "30498682760"
-    };
-    firebase.initializeApp(config);
-    var database = firebase.database();
-
-    function writeUserData(userId, name, email, imageUrl) {
-        firebase.database().ref('users/' + userId).set({
-            username: name,
-            email: email,
-            profile_picture : imageUrl
-        });
-    }
-    writeUserData("1111", "weerayoot", "weerayoot@email.com", "sdfsdfs");
-    </script> -->
 
     <script type="text/javascript">
+    
         $(document).ready(function(){
 
             demo.initChartist();
@@ -461,7 +439,45 @@
                 timer: 4000
             });
 
-            demo.firebaseapp();
+            // document.getElementById("root").style.visibility = "hidden";
+
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            // firebase.auth().onAuthStateChanged(function(user) {
+            //     // [START_EXCLUDE silent]
+            //     // document.getElementById('quickstart-verify-email').disabled = true;
+            //     // [END_EXCLUDE]
+            //     if (user) {
+            //         // User is signed in.
+            //         var displayName = user.displayName;
+            //         var email = user.email;
+            //         var emailVerified = user.emailVerified;
+            //         var photoURL = user.photoURL;
+            //         var isAnonymous = user.isAnonymous;
+            //         var uid = user.uid;
+            //         var providerData = user.providerData;
+            //         console.log("username", email);
+            //     } else {
+            //         console.log("need login");
+            //         window.location.href = "login.html";
+            //     }
+            // });
+
+            function logout() {
+                // firebase.auth().signOut();
+                // console.log("logout");
+            } 
+
+            $('#form-signout').click(function () {
+                // logout();
+            });
         });
     </script>
 </html>

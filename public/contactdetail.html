@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>GlobalTreat Cloud ERP</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/modal-form.css" rel="stylesheet" />
+    <link href="assets/css/datepicker.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+</head>
+<body>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>กำหนดวันเข้าบริการ</h1><br>
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>วันที่เข้าบริการ</label>
+                                <div id="dp1" data-date="12-02-2012" data-date-format="dd-mm-yyyy"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label>เวลาเริ่มให้บริการ</label>
+                            </div>
+                            <div class="row">
+                                <div class="btn-group timepickercontainer dropdown focus-active" id="atimepicker" data-value="11:45AM">
+                                    <button type="button" data-onClick="ScrollToActive(this);" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    8:00AM <i class="caret"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" onLoad="SetScrollValue(this);" id="start_time">
+                                    
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:00AM">8:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:15AM">8:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:30AM">8:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:45AM">8:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:00AM">9:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:15AM">9:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:30AM">9:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:45AM">9:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:00AM">10:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:15AM">10:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:30AM">10:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:45AM">10:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:00AM">11:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:15AM">11:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:30AM">11:30AM</a></li>
+
+                                        <li class="active"><a href="#" onclick="HandleTimeSelect(this);" data-value="11:45AM">11:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:00PM">12:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:15PM">12:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:30PM">12:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:45PM">12:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:00PM">1:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:15PM">1:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:30PM">1:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:45PM">1:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:00PM">2:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:15PM">2:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:30PM">2:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:45PM">2:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:00PM">3:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:15PM">3:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:30PM">3:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:45PM">3:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:00PM">4:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:15PM">4:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:30PM">4:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:45PM">4:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:00PM">5:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:15PM">5:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:30PM">5:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:45PM">5:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="6:00PM">6:00PM</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label><br>เวลาสิ้นสุดให้บริการ</label>
+                            </div>
+                            <div class="row">
+                                <div class="btn-group timepickercontainer dropdown focus-active" id="btimepicker" data-value="11:45AM">
+                                    <button type="button" data-onClick="ScrollToActive(this);" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    8:00AM <i class="caret"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" onLoad="SetScrollValue(this);" id="end_time">
+                                    
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:00AM">8:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:15AM">8:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:30AM">8:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="8:45AM">8:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:00AM">9:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:15AM">9:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:30AM">9:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="9:45AM">9:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:00AM">10:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:15AM">10:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:30AM">10:30AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="10:45AM">10:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:00AM">11:00AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:15AM">11:15AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="11:30AM">11:30AM</a></li>
+
+                                        <li class="active"><a href="#" onclick="HandleTimeSelect(this);" data-value="11:45AM">11:45AM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:00PM">12:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:15PM">12:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:30PM">12:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="12:45PM">12:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:00PM">1:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:15PM">1:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:30PM">1:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="1:45PM">1:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:00PM">2:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:15PM">2:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:30PM">2:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="2:45PM">2:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:00PM">3:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:15PM">3:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:30PM">3:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="3:45PM">3:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:00PM">4:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:15PM">4:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:30PM">4:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="4:45PM">4:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:00PM">5:00PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:15PM">5:15PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:30PM">5:30PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="5:45PM">5:45PM</a></li>
+
+                                        <li><a href="#" onclick="HandleTimeSelect(this);" data-value="6:00PM">6:00PM</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button  name="data" class="login loginmodal-submit" value="" id="submit">บันทึก</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    GlobalTreat
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="pe-7s-graph"></i>
+                        <p>ภาพรวมการดำเนินงาน</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="customerlist.html">
+                        <i class="pe-7s-user"></i>
+                        <p>ข้อมูลลูกค้า</p>
+                    </a>
+                </li>
+                <li  class="active">
+                    <a href="contactlist.html">
+                        <i class="pe-7s-notebook"></i>
+                        <p>เอกสารงานบริการ</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="employee.html">
+                        <i class="pe-7s-users"></i>
+                        <p>ข้อมูลพนักงาน</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="schedule.html">
+                        <i class="pe-7s-note2"></i>
+                        <p>ตารางให้บริการ</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="maps.html">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>แผนที่</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">ข้อสัญญาบริการ</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-dashboard"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-globe"></i>
+                                    <b class="caret"></b>
+                                    <span class="notification">5</span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                           <a href="">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    ตัวเลือก
+                                    <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li>
+                                    <!-- <a href="service_schedule_form.html">กำหนดวันให้บริการ</a> -->
+                                    <a href="#" data-toggle="modal" data-target="#login-modal">กำหนดวันให้บริการ</a>
+                                </li>
+                              </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">สัญญาบริการ</h4>
+                                <p class="category">รายละเอียด</p>
+                            </div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">สัญญาเลขที่ : </p>
+                                                    <h5 id="lb1">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">ระยะสัญญา : </p>
+                                                    <h5 id="lb2">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="typo-line">
+                                                    <p class="category">ชื่อลูกค้า : </p>
+                                                    <h5 id="lb3">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="typo-line">
+                                                    <p class="category">เบอร์โทรศัพท์ : </p>
+                                                    <h5 id="lb4">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">ที่อยู่ : </p>
+                                                    <h5 id="lb5">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">สถานที่ให้บริการ : </p>
+                                                    <h5 id="lb6">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">ประเภทงานบริการ : </p>
+                                                    <h5 id="lb7">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="typo-line">
+                                                    <p class="category">เงื่อนไขการบริการ : </p>
+                                                    <h5 id="lb8">ไม่มีข้อมูล</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="header">
+                                    <h4 class="title">ข้อมูลเข้าบริการ</h4>
+                                    <p class="category">รายละเอียด</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped display" id="service_table">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Company
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright pull-right">
+                    &copy; 2016 GlobalTreat
+                </p>
+            </div>
+        </footer>
+
+
+    </div>
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+  
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script type="text/javascript">
+
+        var start_time, end_time;
+        function HandleTimeSelect(a){
+            $(a).closest(".timepickercontainer").attr("data-value", $(a).text());
+            $(a).closest(".timepickercontainer").find("button").first().html($(a).text() + " <i class='caret'></i>");
+            $(a).closest(".timepickercontainer").find("li.active").each(function() {$(this).removeClass("active");});
+            $(a).parent().addClass("active");
+
+            console.log("time", $(a).text());
+            console.log("test", $(a).closest(".timepickercontainer").attr("id"));
+
+            if ($(a).closest(".timepickercontainer").attr("id").localeCompare("atimepicker") == 0) {
+                start_time = $(a).text();
+            } else {
+                end_time = $(a).text();
+            }
+        }
+
+        function ScrollToActive(btn){
+            //console.log("scrolling down "+  $(btn).closest(".timepickercontainer").find(".dropdown-menu").first());
+            //$(btn).closest(".timepickercontainer").find(".dropdown-menu").first().scrollTop(600);
+            $(btn).closest(".timepickercontainer").find(".dropdown-menu").first().on('show.bs.dropdown', function () {
+                $(btn).closest(".timepickercontainer").find(".dropdown-menu").first().scrollTop(600);
+                console.log("performing");
+                
+            });
+        }
+
+        function SetScrollValue(ul){
+            $(ul).scrollTop(600);
+            console.log("setting scroll");
+        }
+
+        function SetScrollValues(){
+           $(".dropdown.focus-active").on("shown.bs.dropdown", function() {$(this).find(".dropdown-menu li.active a").focus();});
+        }
+
+        
+        $(document).ready(function(){
+
+            $(".dropdown.focus-active").on("shown.bs.dropdown", function() {$(this).find(".dropdown-menu li.active a").focus();});
+
+            // Parameter
+            function getSearchParameters() {
+                var prmstr = window.location.search.substr(1);
+                return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+            }
+
+            function transformToAssocArray( prmstr ) {
+                var params = {};
+                var prmarr = prmstr.split("&");
+                for ( var i = 0; i < prmarr.length; i++) {
+                    var tmparr = prmarr[i].split("=");
+                    params[tmparr[0]] = tmparr[1];
+                }
+                return params;
+            }
+
+            // Prepare Contact Date
+            var schedule_date;
+            $('#dp1').datepicker({
+                format: 'dd-mm-yyyy',
+                todayBtn: 'linked'
+            });
+
+            $('#dp1').datepicker().on('changeDate', function(ev){
+                var date = new Date(ev.date.valueOf());
+                var dd = date.getDate();
+                var mm = date.getMonth()+1; //January is 0!
+
+                var yyyy = date.getFullYear();
+                if(dd<10){
+                    dd='0'+dd
+                } 
+                if(mm<10){
+                    mm='0'+mm
+                } 
+                var today = dd+'/'+mm+'/'+yyyy;
+                schedule_date = today;
+            });
+
+            var params = getSearchParameters();
+            var contactid = params.data
+            console.log("params", contactid);
+
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var dbRefObject = database.ref('contacts');
+            var dbScheduleRefObject = database.ref('schedules');
+            var dataSet = [];
+            var dataSet2 = [];
+            var table;
+
+            dbRefObject.on('child_added', function(snapshot) {
+                var key = snapshot.key;
+                var contactRef = firebase.database().ref('contacts/' + key);
+                contactRef.on('value', function(snapshot) {
+                    dataSet.push([
+                        snapshot.val().contact_id,
+                        snapshot.val().contact_start_date + "  -  " + snapshot.val().contact_end_date,
+                        snapshot.val().customer_name,
+                        snapshot.val().customer_phone,
+                        snapshot.val().customer_address,
+                        snapshot.val().contact_services,
+                        snapshot.val().contact_note
+                    ]);
+
+                    console.log("dataSet", dataSet);
+                    
+                    // Show user data
+                    for (var i = 0; i < dataSet.length; i++) {
+                        var cID = dataSet[i][0];
+                        if (cID.localeCompare(contactid) == 0) {
+                            document.getElementById("lb1").innerHTML = dataSet[i][0];
+                            document.getElementById("lb2").innerHTML = dataSet[i][1];
+                            document.getElementById("lb3").innerHTML = dataSet[i][2];
+                            document.getElementById("lb4").innerHTML = dataSet[i][3];
+                            document.getElementById("lb5").innerHTML = dataSet[i][4];
+                            document.getElementById("lb6").innerHTML = dataSet[i][4];
+                            document.getElementById("lb7").innerHTML = dataSet[i][5];
+                            document.getElementById("lb8").innerHTML = dataSet[i][6];
+                        }
+                    } 
+                }); 
+            });
+
+            var scheduleCount;
+            firebase.database().ref('schedules/').once('value').then(function(snapshot) {
+                // var username = snapshot.val();
+                var counter = snapshot.numChildren() + 1;
+                scheduleCount = counter.toString();
+                console.log("count current data : " + scheduleCount);
+            });
+
+            dbScheduleRefObject.on('child_added', function(snapshot) {
+                var key = snapshot.key;
+                var contactRef = firebase.database().ref('schedules/' + key);
+                contactRef.on('value', function(snapshot) {
+                    dataSet2.push([
+                        snapshot.val().schedule_date,
+                        snapshot.val().schedule_start_time + " - " + snapshot.val().schedule_end_time,
+                        snapshot.val().schedule_status
+                    ]);
+
+                    console.log("dataSet2 ===", dataSet2);
+
+                    var counter = dataSet2.length + 1;
+                    scheduleCount = counter.toString();
+                    console.log("count current data ++++: " + scheduleCount);
+                }); 
+
+                var tempTable = $('#service_table').DataTable( {
+                    data: dataSet2,
+                    processing: true,
+                    destroy: true,
+                    bPaginate: false,
+                    bFilter: false, 
+                    bInfo: false,
+                    scrollY: "400px",
+                    scrollCollapse: true,
+                    columns: [
+                        { title: "วันที่" },
+                        { title: "เวลา" },
+                        { title: "สถานะ" },
+                    ]
+                });
+
+                table = tempTable;
+            });
+
+            dbScheduleRefObject.on('child_changed', function(snapshot) {
+
+            });
+
+
+
+            $('#submit').click(function () {
+                console.log("send data", dataSet[0][0]);
+                console.log("send data", schedule_date);
+                console.log("send data", start_time);
+                console.log("send data", end_time);
+
+                var el = document.getElementById("submit");
+                el.value = contactid;
+
+                var scheduleId = ""
+                for (i = 0; i < 4 - length; i++) { 
+                    scheduleId = scheduleId.concat("0");
+                }
+                console.log('query count ' + scheduleId);
+                var scheduleID = scheduleId + scheduleCount;
+
+                // Write data to firebase
+                firebase.database().ref('schedules/' + scheduleID).set({
+                    schedule_id: scheduleID,
+                    schedule_date: schedule_date,
+                    schedule_start_time: start_time,
+                    schedule_end_time: end_time,
+                    schedule_status: "ยังไม่ได้เริ่มให้บริการ",
+                    contact_id: dataSet[0][0]
+                });
+
+                $('#login-modal').modal('hide');
+
+                location.reload();
+            });
+        });
+    </script>
+
+</html>

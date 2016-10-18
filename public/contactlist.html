@@ -29,6 +29,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 </head>
 <body>
 
@@ -158,74 +159,8 @@
                                 <p class="category">รายการการให้บริการ</p>
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <table class="table table-hover table-striped">
-                                    <thead>
-                                        <th>Contact No.</th>
-                                    	<th>ผู้ว่าจ้าง</th>
-                                    	<th>ประเภทบริการ</th>
-                                        <th>ระยะสัญญา</th>
-                                        <th>จำนวนครั้งที่เข้าบริการ</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>CTN00001</td>
-                                        	<td>นายสมชาย เข็มกลัด</td>
-                                        	<td>ปลวก, มด, แมลงสาป</td>
-                                        	<td>ระยะสัญญา 6 เดือน</td>
-                                            <td>6 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>CTN00004</td>
-                                            <td>นายสมควร แล้ว</td>
-                                            <td>ปลวก, แมลงสาป</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>CTN00003</td>
-                                            <td>นายบัญชี การเงิน</td>
-                                            <td>ปลวก</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                            <td>CTN00003</td>
-                                            <td>นายมั่งมี การเงิน</td>
-                                            <td>บ่อบำบัดน้ำเสีย</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                            <td>CTN00003</td>
-                                            <td>นายเงิน ทอง</td>
-                                            <td>แมลงสาป</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                            <td>CTN00003</td>
-                                            <td>Mr.Steve Jobs</td>
-                                            <td>บ่อบำบัดน้ำเสีย</td>
-                                            <td>ระยะสัญญา 2 ปี</td>
-                                            <td>4 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                            <td>CTN00003</td>
-                                            <td>นายบัญชี การเงิน</td>
-                                            <td>ยุ่ง, ปลวก</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                        <tr>
-                                            <td>CTN00003</td>
-                                            <td>นางปราณี มีชัย</td>
-                                            <td>แมลงสาป</td>
-                                            <td>ระยะสัญญา 1 ปี</td>
-                                            <td>12 ครั้ง</td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover table-striped display" id="customer_table">
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -295,5 +230,68 @@
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
 
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyD9YqpRQuG_IR362iUN1VltXIemUFcBHmc",
+                authDomain: "globaltreatserp.firebaseapp.com",
+                databaseURL: "https://globaltreatserp.firebaseio.com",
+                storageBucket: "globaltreatserp.appspot.com",
+                messagingSenderId: "30498682760"
+            };
+            firebase.initializeApp(config);
+            var database = firebase.database();
+            var dbRefObject = database.ref('contacts');
+            var dataSet = [];
+            var table;
+            dbRefObject.on('child_added', function(snapshot) {
+                var key = snapshot.key;
+                console.log("key", key)
+                var customreRef = firebase.database().ref('contacts/' + key);
+                customreRef.on('value', function(snapshot) {
+                    dataSet.push([
+                        snapshot.val().contact_id,
+                        snapshot.val().customer_name,
+                        snapshot.val().customer_phone,
+                        snapshot.val().contact_services, 
+                        snapshot.val().contact_end_date
+                    ]);
+                    console.log("dataSet", dataSet);
+                }); 
+
+                var tempTable = $('#customer_table').DataTable( {
+                    data: dataSet,
+                    processing: true,
+                    destroy: true,
+                    bInfo: false,
+                    bPaginate: false,
+                    columns: [
+                        { title: "เลขที่สัญญา" },
+                        { title: "ชื่อลูกค้า" },
+                        { title: "เบอร์โทรติดต่อ" },
+                        { title: "งานบริการ" },
+                        { title: "วันที่หมดสัญญา" },
+                        { defaultContent: "<button>รายละเอียด</button>" }
+                    ]
+                });
+
+                table = tempTable;
+            });
+
+            $('#customer_table').on( 'click', 'button', function () {
+                // alert("test test");
+                var data = table.row( $(this).parents('tr') ).data();
+                console.log("button click", data);
+                window.location.href = "contactdetail.html?data=" + data[0];
+            } );
+        });
+    </script>
 
 </html>
